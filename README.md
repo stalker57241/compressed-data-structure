@@ -29,3 +29,20 @@ project(proj LANGUAGES C)
 add_executable(${PROJECT_NAME} "main.c")
 target_link_libraries(${PROJECT_NAME} PUBLIC CDS)
 ```
+# Usage example
+```C
+#include <stdio.h>
+#include <00ways/cds.h>
+
+int main(int argc, char* const argv[]) {
+  cdsmap* map = cdsMapFile("file.cds");
+  char* texta = cdsMapReadFile(map, /* 16 chars long or less*/ "helloa.txt");
+  char* textb = cdsMapReadFile(map, /* 16 chars long or less*/ "hellob.txt");
+  printf("texta: %s");
+  printf("textb: %s");
+  free(texta);
+  free(textb);
+  cdsCloseMap(map);
+  return 0;
+}
+```
